@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Times Task</string>
+    <string name="published_date">Published Date : </string>
+    <string name="subsection">Subsection : </string>
+    <string name="section">Section : </string>
+    <string name="byline">Created By : </string>
+    <string name="adx_keywords">"Key Words : "</string>
+</resources>

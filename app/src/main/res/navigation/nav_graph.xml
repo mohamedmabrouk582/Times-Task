@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/articlesListFigment">
+
+    <fragment
+        android:id="@+id/articlesListFigment"
+        android:name="com.example.timestask.view.fragments.ArticlesListFigment"
+        android:label="ArticlesListFigment" >
+        <action
+            android:id="@+id/action_articlesListFigment_to_articleDetailsFragment"
+            app:destination="@id/articleDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDetailsFragment"
+        android:name="com.example.timestask.view.fragments.ArticleDetailsFragment"
+        android:label="ArticleDetailsFragment" >
+        <argument
+            android:name="ARTICLE_KEY"
+            app:argType="com.example.data.entities.ArticleEntity" />
+    </fragment>
+</navigation>

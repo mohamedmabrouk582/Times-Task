@@ -1,5 +1,6 @@
 package com.example.domain.useCases
 
+import com.example.domain.models.Article
 import com.example.domain.models.ArticleResponse
 import com.example.domain.models.Result
 import com.example.domain.repository.ArticleDefaultRepository
@@ -22,6 +23,9 @@ class ArticleRepositoryUseCaseTest{
             return TestUtils.getArticles()
         }
 
+        override suspend fun insertAllArticles(articles: ArrayList<Article>) {
+          TestUtils.articles.addAll(articles)
+        }
     }
 
     @Before
@@ -40,6 +44,13 @@ class ArticleRepositoryUseCaseTest{
     fun `getAllArticles() success()`()= testScope.runBlockingTest {
         val articles = repository.getAllArticles().first()
         assertThat(articles).isEqualTo(Result.OnSuccess(ArticleResponse("ok",TestUtils.articles)))
+    }
+
+    @Test
+    fun `InsertAllArticles() success()`()=testScope.runBlockingTest {
+        val articles= arrayListOf(Article(6,"item6"),Article(7,"item7"))
+        repository.insertAllArticles(articles)
+        assertThat(TestUtils.articles).containsAnyOf(Article(6,"item6"),Article(7,"item7"))
     }
 
 }

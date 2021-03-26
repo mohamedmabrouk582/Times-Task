@@ -9,7 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.data.entities.ArticleEntity
 import com.example.domain.models.Article
 import com.example.timestask.R
-import com.example.timestask.callBack.ArticlesCallBack
 import com.example.timestask.databinding.ArticleListFargmentBinding
 import com.example.timestask.utils.ARTICLE_KEY
 import com.example.timestask.view.ArticlesAdapter

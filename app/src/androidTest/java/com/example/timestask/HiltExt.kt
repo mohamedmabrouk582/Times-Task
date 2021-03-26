@@ -10,23 +10,24 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-const val THEME_EXTRAS_BUNDLE_KEY = "androidx.fragment.app.testing.FragmentScenario" +
-        ".EmptyFragmentActivity.THEME_EXTRAS_BUNDLE_KEY"
+//const val THEME_EXTRAS_BUNDLE_KEY = "androidx.fragment.app.testing.FragmentScenario" +
+//        ".EmptyFragmentActivity.THEME_EXTRAS_BUNDLE_KEY"
 @ExperimentalCoroutinesApi
 inline fun <reified T:Fragment> lunchedFragmentInHiltContainer(
     fragmentArgs : Bundle?=null,
-    themeResId : Int = R.style.FragmentScenarioEmptyFragmentActivityTheme,
+   // themeResId : Int = R.style.FragmentScenarioEmptyFragmentActivityTheme,
     fragmentFactory: FragmentFactory? = null,
     crossinline action : T.() -> Unit = {}
 ){
   val mainActivityIntent = Intent.makeMainActivity(
       ComponentName(
           ApplicationProvider.getApplicationContext(),
-          HiltTestActivity::class.java
+          TestHiltActivity::class.java
       )
-  ).putExtra(THEME_EXTRAS_BUNDLE_KEY,themeResId)
+  )
+      //.putExtra(THEME_EXTRAS_BUNDLE_KEY,themeResId)
 
-    ActivityScenario.launch<HiltTestActivity>(mainActivityIntent).onActivity { activity ->
+    ActivityScenario.launch<TestHiltActivity>(mainActivityIntent).onActivity { activity ->
         fragmentFactory?.let {
             activity.supportFragmentManager.fragmentFactory=it
         }

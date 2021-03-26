@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.dalilmuslim">
+    package="com.example.timestask">
 
     <application>
-        <activity android:name=".HiltTestActivity"
+        <activity android:name=".TestHiltActivity"
             android:exported="false"
             />
+        <instrumentation
+            android:name="android.test.InstrumentationTestRunner"
+            android:targetPackage="com.example.timestask" />
     </application>
 
 </manifest>

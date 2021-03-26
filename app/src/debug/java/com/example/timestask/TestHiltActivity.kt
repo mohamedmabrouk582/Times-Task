@@ -1,4 +1,10 @@
 package com.example.timestask
 
-class TestHiltActivity {
+import android.os.Bundle
+import android.os.PersistableBundle
+import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class TestHiltActivity : AppCompatActivity(){
 }

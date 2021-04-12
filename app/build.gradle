@@ -20,6 +20,9 @@ android {
         buildConfigField ('String', 'BASE_URL', Base_URL)
     }
 
+    compileOptions.incremental = false
+
+
     buildTypes {
         release {
             minifyEnabled false

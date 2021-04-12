@@ -14,33 +14,33 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 //        ".EmptyFragmentActivity.THEME_EXTRAS_BUNDLE_KEY"
 @ExperimentalCoroutinesApi
 inline fun <reified T:Fragment> lunchedFragmentInHiltContainer(
-    fragmentArgs : Bundle?=null,
-   // themeResId : Int = R.style.FragmentScenarioEmptyFragmentActivityTheme,
-    fragmentFactory: FragmentFactory? = null,
-    crossinline action : T.() -> Unit = {}
+        fragmentArgs : Bundle?=null,
+        // themeResId : Int = R.style.FragmentScenarioEmptyFragmentActivityTheme,
+        fragmentFactory: FragmentFactory? = null,
+        crossinline action : T.() -> Unit = {}
 ){
-  val mainActivityIntent = Intent.makeMainActivity(
-      ComponentName(
-          ApplicationProvider.getApplicationContext(),
-          TestHiltActivity::class.java
-      )
-  )
-      //.putExtra(THEME_EXTRAS_BUNDLE_KEY,themeResId)
+    val mainActivityIntent = Intent.makeMainActivity(
+            ComponentName(
+                    ApplicationProvider.getApplicationContext(),
+                    HiltTestActivity::class.java
+            )
+    )
+    //.putExtra(THEME_EXTRAS_BUNDLE_KEY,themeResId)
 
-    ActivityScenario.launch<TestHiltActivity>(mainActivityIntent).onActivity { activity ->
+    ActivityScenario.launch<HiltTestActivity>(mainActivityIntent).onActivity { activity ->
         fragmentFactory?.let {
             activity.supportFragmentManager.fragmentFactory=it
         }
-       val fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
-            Preconditions.checkNotNull(T::class.java.classLoader),
-            T::class.java.name
+        val fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
+                Preconditions.checkNotNull(T::class.java.classLoader),
+                T::class.java.name
         )
 
         fragment.arguments=fragmentArgs
 
         activity.supportFragmentManager.beginTransaction()
-            .add(android.R.id.content,fragment,"")
-            .commitNow()
+                .add(android.R.id.content,fragment,"")
+                .commitNow()
 
         (fragment as T).action()
     }

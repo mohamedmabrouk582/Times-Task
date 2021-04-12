@@ -40,9 +40,9 @@ class ArticlesListFigmentTest{
         lunchedFragmentInHiltContainer<ArticlesListFigment> {
             Navigation.setViewNavController(requireView(), navController)
         }
-        Espresso.onView(withId(R.id.article_rcv)).perform(RecyclerViewActions.
-        actionOnItemAtPosition<ArticlesAdapter.Holder>(1, MyViewAction.clickItemWithId(R.id.item)))
-
+//        Espresso.onView(withId(R.id.article_rcv)).perform(RecyclerViewActions.
+//        actionOnItemAtPosition<ArticlesAdapter.Holder>(1, MyViewAction.clickItemWithId(R.id.item)))
+//
 
     }
 

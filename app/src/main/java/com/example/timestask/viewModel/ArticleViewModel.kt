@@ -31,7 +31,11 @@ class ArticleViewModel @Inject constructor(private val repository: ArticleDefaul
     private val _articles = MutableStateFlow<ArrayList<ArticleEntity>>(ArrayList())
     val articles : StateFlow<ArrayList<ArticleEntity>> = _articles
 
+
+
     fun getAllArticle(){
+        val number : Int? = null
+        val twoNumber : Int = number!! * 2
         viewModelScope.launch {
             repository.getAllArticles().collect {
                 when(it){

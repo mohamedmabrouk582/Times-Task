@@ -1,11 +1,16 @@
 package com.example.timestask.di
 
+import android.content.Context
 import com.example.data.api.ArticleApi
 import com.example.timestask.BuildConfig
+import com.facebook.stetho.Stetho
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -34,9 +39,11 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun getClient(interceptor: HttpLoggingInterceptor) =
+    fun getClient(@ApplicationContext contex:Context, interceptor: HttpLoggingInterceptor) =
         OkHttpClient.Builder()
             .addInterceptor(interceptor)
+            .addInterceptor(ChuckInterceptor(contex))
+            .addNetworkInterceptor(StethoInterceptor())
             .build()
 
     @Provides
